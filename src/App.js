@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SearchBar from './components/SearchBar';
+import keys from './keys'
 // import WeatherDisplay from './components/WeatherDisplay'; // Assume you have this component to display weather data
 
 const App = () => {
@@ -8,12 +9,13 @@ const App = () => {
 
   const fetchWeatherData = async (city) => {
     try {
-      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.OWM_API_KEY}&units=metric`);
+      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${keys.OWM_API_KEY}&units=metric`);
       if (!response.ok) {
         throw new Error('City not found');
       }
       const data = await response.json();
-      setWeatherData(data);
+      // setWeatherData(data);
+      console.log(data);
       setError(null);
     } catch (err) {
       setWeatherData(null);
