@@ -26,15 +26,14 @@ const App = () => {
     }
   };
 
-  console.log({ search });
-
   return (
-    <div className="App">
+    <div className="container">
       <h1>Weather App</h1>
       <SearchBar onSearch={fetchWeatherData} />
       {error && <p>{error}</p>}
       {weatherData && <LocationDisplay location={search} />}
-      {weatherData && <TemperatureDisplay temperature={weatherData.main.temp} />}
+      {weatherData && <img src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt="Weather Icon" />}
+      {weatherData && <TemperatureDisplay temperatureData={weatherData.main} />}
     </div>
   );
 };
