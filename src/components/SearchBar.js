@@ -3,15 +3,15 @@ import React, { useState } from 'react';
 const SearchBar = ({ onSearch }) => {
   const [city, setCity] = useState('');
 
-  const handleInputChange = (e) => {
-    setCity(e.target.value);
+  const handleInputChange = ({ target }) => {
+    setCity(target.value);
   };
 
   const handleSearch = (e) => {
     e.preventDefault();
     if (city.trim()) {
       onSearch(city);
-      setCity('');
+      setCity(city);
     }
   };
 
