@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios'
 import LocationDisplay from './components/LocationDisplay';
 import SearchBar from './components/SearchBar';
 import TemperatureDisplay from './components/TemperatureDisplay'
@@ -12,19 +13,25 @@ const App = () => {
 
   const fetchWeatherData = async (city) => {
     setSearch(city);
+    setLoading(true);
+
     try {
-      setLoading(true);
-      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${keys.OWM_API_KEY}&units=metric`);
-      if (!response.ok) {
-        throw new Error(`"${city}" not found`);
-      }
-      const data = await response.json();
-      console.log(data);
+      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${keys.OWM_API_KEY}&units=metric`);
+
       setError(null);
-      setWeatherData(data);
+      setWeatherData(response.data);
+
     } catch (err) {
-      setError(err.message);
       setWeatherData(null);
+
+      switch (err.response.status) {
+        case 404:
+          setError(`"${city}" not found`);
+          break;
+        default:
+          setError(err.message)
+          break;
+      }
     }
     setLoading(false);
   };
