@@ -4,6 +4,11 @@ import LocationDisplay from './components/LocationDisplay';
 import SearchBar from './components/SearchBar';
 import TemperatureDisplay from './components/TemperatureDisplay'
 import keys from './keys'
+import './styles.css'
+import MiscWeather from './components/MiscWeather';
+import SunriseSet from './components/SunriseSet';
+
+const DEBUG = true;
 
 const App = () => {
   const [weatherData, setWeatherData] = useState(null);
@@ -18,6 +23,10 @@ const App = () => {
     try {
       const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${keys.OWM_API_KEY}&units=metric`);
 
+      if (DEBUG) {
+        console.log(`DATA: ${JSON.stringify(response, null, 2)}`);
+      }
+
       setError(null);
       setWeatherData(response.data);
 
@@ -25,6 +34,8 @@ const App = () => {
       setWeatherData(null);
 
       switch (err.response.status) {
+        case 400:
+        // when search is < 3 chars long, just fall through to 404
         case 404:
           setError(`"${city}" not found`);
           break;
@@ -38,13 +49,17 @@ const App = () => {
 
   return (
     <div className="container">
-      <h1>Weather App</h1>
+      <h1 style={{ "margin": "50px 0" }}>Weatheroogle</h1>
       <SearchBar onSearch={fetchWeatherData} />
-      {loading && <h2>Loading...</h2>}
-      {error && <p>{error}</p>}
-      {weatherData && <LocationDisplay location={search} />}
-      {weatherData && <img src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt="Weather Icon" />}
-      {weatherData && <TemperatureDisplay temperatureData={weatherData.main} />}
+      {loading && <h2 style={{ "margin": "25px 0" }}>Loading...</h2>}
+      {error && <p style={{ "margin": "25px 0" }}>{error}</p>}
+      <div className='weather'>
+        {weatherData && <LocationDisplay location={search} />}
+        {weatherData && <img src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt="Weather Icon" />}
+        {weatherData && <TemperatureDisplay temperatureData={weatherData.main} />}
+        {weatherData && <MiscWeather data={weatherData} />}
+        {weatherData && <SunriseSet data={weatherData.sys} />}
+      </div>
     </div>
   );
 };
