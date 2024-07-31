@@ -7,8 +7,9 @@ import keys from './keys'
 import './styles.css'
 import MiscWeather from './components/MiscWeather';
 import SunriseSet from './components/SunriseSet';
+import Map from './components/Map';
 
-const DEBUG = true;
+const DEBUG = false;
 
 const App = () => {
   const [weatherData, setWeatherData] = useState(null);
@@ -48,19 +49,22 @@ const App = () => {
   };
 
   return (
-    <div className="container">
-      <h1 style={{ "margin": "50px 0" }}>Weatheroogle</h1>
-      <SearchBar onSearch={fetchWeatherData} />
-      {loading && <h2 style={{ "margin": "25px 0" }}>Loading...</h2>}
-      {error && <p style={{ "margin": "25px 0" }}>{error}</p>}
-      <div className='weather'>
-        {weatherData && <LocationDisplay location={search} />}
-        {weatherData && <img src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt="Weather Icon" />}
-        {weatherData && <TemperatureDisplay temperatureData={weatherData.main} />}
-        {weatherData && <MiscWeather data={weatherData} />}
-        {weatherData && <SunriseSet data={weatherData.sys} />}
+    <>
+      <div className="container">
+        <h1 style={{ "margin": "50px 0" }}>Weatheroogle</h1>
+        <SearchBar onSearch={fetchWeatherData} />
+        {loading && <h2 style={{ "margin": "25px 0" }}>Loading...</h2>}
+        {error && <p style={{ "margin": "25px 0" }}>{error}</p>}
+        <div className='weather'>
+          {weatherData && <LocationDisplay location={search} />}
+          {weatherData && <img src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt="Weather Icon" />}
+          {weatherData && <TemperatureDisplay temperatureData={weatherData.main} />}
+          {weatherData && <MiscWeather data={weatherData} />}
+          {weatherData && <SunriseSet data={weatherData.sys} />}
+        </div>
+        {weatherData && <Map coords={weatherData.coord} />}
       </div>
-    </div>
+    </>
   );
 };
 
