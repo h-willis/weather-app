@@ -66,6 +66,11 @@ body {
   justify-content: center;
   align-items: center;
   width: 70px;
+  transition: all ease-in-out 0.5s;
+}
+
+.weatherItem:hover {
+  transform: scale(1.1);
 }
 
 .weatherItem img {
