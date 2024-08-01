@@ -61,6 +61,7 @@ const App = () => {
         <div className='weather'>
           {weatherData && <LocationDisplay location={search} />}
           {weatherData && <img src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt="Weather Icon" />}
+          {/* {weatherData && <h3>{weatherData.weather[0].description}</h3>} */}
           {weatherData && <TemperatureDisplay temperatureData={weatherData.main} />}
           {weatherData && <MiscWeather data={weatherData} />}
           {weatherData && <SunriseSet data={weatherData.sys} />}
