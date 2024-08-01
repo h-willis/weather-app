@@ -63,7 +63,7 @@ const App = () => {
           {weatherData && <img src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt="Weather Icon" />}
           {weatherData && <TemperatureDisplay temperatureData={weatherData.main} />}
           {weatherData && <MiscWeather data={weatherData} />}
-          {weatherData && <SunriseSet data={weatherData.sys} />}
+          {weatherData && <SunriseSet data={weatherData} />}
         </div>
         {weatherData && <Map coords={weatherData.coord} />}
       </div>
