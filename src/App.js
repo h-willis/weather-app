@@ -48,6 +48,9 @@ const App = () => {
     setLoading(false);
   };
 
+  // TODO fancy stylings: inital loading, pulsing loading..., smooth appearance
+  // of weather
+
   return (
     <>
       <div className="container">

@@ -71,6 +71,12 @@ body {
 
 .weatherItem:hover {
   transform: scale(1.1);
+  /* transition: all ease-in-out 0.2s; */
+}
+
+.weatherItem:active {
+  transform: scale(0.9);
+  transition: all ease-in-out 0.1s;
 }
 
 .weatherItem img {
