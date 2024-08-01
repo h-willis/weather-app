@@ -5,7 +5,7 @@ import React from 'react'
 function MiscWeather({ data }) {
   return (
     <div className="weatherContainer">
-      <span className="weatherItem">
+      <span className="weatherItem" onClick={() => alert("you clicked me")}>
         <img src='icons/humidity.png' alt="Himidity" /> {data.main.humidity}%
       </span>
       <span className="weatherItem">
@@ -18,7 +18,7 @@ function MiscWeather({ data }) {
         <img src='icons/wind.png' alt='Wind' />{data.wind.speed}m/s
       </span>
     </div>
-  )
+  );
 }
 
 export default MiscWeather;

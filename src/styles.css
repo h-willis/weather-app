@@ -71,9 +71,32 @@ body {
 
 .weatherItem:hover {
   transform: scale(1.1);
+  /* transition: all ease-in-out 0.2s; */
+}
+
+.weatherItem:active {
+  transform: scale(1);
+  transition: all ease-in-out 0.1s;
 }
 
 .weatherItem img {
   height: 30px;
   width: 30px;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 100;
+  }
+}
+
+.tempUnitDropdown {
+  position: absolute;
+  margin-top: 90px;
+  /* top: 100%; */
+  animation: fade-in 0.5s;
 }
