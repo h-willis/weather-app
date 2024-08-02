@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 // humidity, pressure, cloud coverage, wind speed
 
 function MiscWeather({ data }) {
+  // const [is, setis] = useState(second)
+
   return (
     <div className="weatherContainer">
       <span className="weatherItem" onClick={() => alert("you clicked me")}>

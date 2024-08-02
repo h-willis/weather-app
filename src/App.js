@@ -9,7 +9,7 @@ import MiscWeather from './components/MiscWeather';
 import SunriseSet from './components/SunriseSet';
 import Map from './components/Map';
 
-const DEBUG = false;
+const DEBUG = true;
 
 const App = () => {
   const [weatherData, setWeatherData] = useState(null);
@@ -90,6 +90,7 @@ const App = () => {
         <div className='weather'>
           {ready && <LocationDisplay location={search} />}
           {ready && <img src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt="Weather Icon" />}
+          {ready && <p id="description">{weatherData.weather[0].description[0].toUpperCase() + weatherData.weather[0].description.slice(1)}</p>}
           {ready && <TemperatureDisplay temperatureData={weatherData.main} />}
           {ready && <MiscWeather data={weatherData} />}
           {ready && <SunriseSet data={weatherData} timezone={timezone} />}
