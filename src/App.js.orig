@@ -86,13 +86,22 @@ const App = () => {
         <h1 style={{ "margin": "50px 0" }}>Weatheroogle</h1>
         <SearchBar onSearch={fetchWeatherData} />
         {loading && !ready && <h2 style={{ "margin": "25px 0" }}>Loading...</h2>}
-        {!loading && error && <p style={{ "margin": "25px 0" }}>{error}</p>}
+        {error && <p style={{ "margin": "25px 0" }}>{error}</p>}
         <div className='weather'>
+<<<<<<< HEAD
+          {weatherData && <LocationDisplay location={search} />}
+          {weatherData && <img src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt="Weather Icon" />}
+          {/* {weatherData && <h3>{weatherData.weather[0].description}</h3>} */}
+          {weatherData && <TemperatureDisplay temperatureData={weatherData.main} />}
+          {weatherData && <MiscWeather data={weatherData} />}
+          {weatherData && <SunriseSet data={weatherData.sys} />}
+=======
           {ready && <LocationDisplay location={search} />}
           {ready && <img src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt="Weather Icon" />}
           {ready && <TemperatureDisplay temperatureData={weatherData.main} />}
           {ready && <MiscWeather data={weatherData} />}
           {ready && <SunriseSet data={weatherData} timezone={timezone} />}
+>>>>>>> main
         </div>
         {ready && <Map coords={weatherData.coord} />}
       </div>
