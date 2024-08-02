@@ -86,7 +86,7 @@ const App = () => {
         <h1 style={{ "margin": "50px 0" }}>Weatheroogle</h1>
         <SearchBar onSearch={fetchWeatherData} />
         {loading && !ready && <h2 style={{ "margin": "25px 0" }}>Loading...</h2>}
-        {error && <p style={{ "margin": "25px 0" }}>{error}</p>}
+        {!loading && error && <p style={{ "margin": "25px 0" }}>{error}</p>}
         <div className='weather'>
           {ready && <LocationDisplay location={search} />}
           {ready && <img src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt="Weather Icon" />}
