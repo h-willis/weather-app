@@ -22,10 +22,20 @@ function MiscWeather({ data }) {
   }
 
   function formatWindSpeed(speedMs) {
+    // let convertedSpeed;
     switch (windUnits) {
       case WINDUNITS.MS:
         return speedMs + 'm/s';
-      //TODO maths for remaining units
+      case WINDUNITS.FTS:
+        return (speedMs * 3.28084) + WINDUNITS.FTS;
+      case WINDUNITS.MPH:
+        return (speedMs * 2.23694) + WINDUNITS.MPH;
+      case WINDUNITS.KNOTS:
+        return (speedMs * 1.94384) + WINDUNITS.KNOTS;
+      case WINDUNITS.KMPH:
+        return (speedMs * 3.6) + WINDUNITS.KMPH;
+      default:
+        return speedMs + 'm/s';
     }
   }
 
