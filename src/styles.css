@@ -72,15 +72,15 @@ body {
   justify-content: center;
   align-items: center;
   width: 80px;
-  transition: all ease-in-out 0.5s;
+  transition: all ease-in-out 0.1s;
 }
 
-.weatherItem:hover {
-  transform: scale(1.1);
+.weatherItem.clickable:hover {
+  transform: scale(1.08);
   /* transition: all ease-in-out 0.2s; */
 }
 
-.weatherItem:active {
+.weatherItem.clickable:active {
   transform: scale(1);
   transition: all ease-in-out 0.1s;
 }

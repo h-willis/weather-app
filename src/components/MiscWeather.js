@@ -57,7 +57,7 @@ function MiscWeather({ data }) {
 
   return (
     <div className="weatherContainer">
-      <span className="weatherItem" onClick={() => alert("you clicked me")}>
+      <span className="weatherItem">
         <img src='icons/humidity.png' alt="Himidity" /> {data.main.humidity}%
       </span>
       <span className="weatherItem">
@@ -66,7 +66,7 @@ function MiscWeather({ data }) {
       <span className="weatherItem">
         <img src='icons/cloud.png' alt='Cloud' />{data.clouds.all}%
       </span>
-      <span className="weatherItem" onClick={toggleIsOpen}>
+      <span className="weatherItem clickable" onClick={toggleIsOpen}>
         <img src='icons/wind.png' alt='Wind' />{formatWindSpeed(data.wind.speed)}
         {isOpen && windOptionDropdown}
       </span>
