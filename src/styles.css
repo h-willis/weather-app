@@ -1,6 +1,8 @@
 * {
   /* outline: 1px solid red; */
   margin: 0;
+  /* border: 0; */
+  padding: 0;
 }
 
 body {
@@ -36,17 +38,21 @@ body {
   border-radius: 6px;
 }
 
+.weather #description {
+  margin: 10px 0;
+}
+
 .weather img {
   height: 100px;
   width: 100px;
+  border: 0;
   border-radius: 6px;
   outline: 3px solid black;
   margin: 10px 0;
 }
 
 .location {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 10px 0;
   font-weight: bold;
 }
 
@@ -65,16 +71,16 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 70px;
-  transition: all ease-in-out 0.5s;
+  width: 80px;
+  transition: all ease-in-out 0.1s;
 }
 
-.weatherItem:hover {
-  transform: scale(1.1);
+.weatherItem.clickable:hover {
+  transform: scale(1.08);
   /* transition: all ease-in-out 0.2s; */
 }
 
-.weatherItem:active {
+.weatherItem.clickable:active {
   transform: scale(1);
   transition: all ease-in-out 0.1s;
 }
@@ -94,7 +100,7 @@ body {
   }
 }
 
-.tempUnitDropdown {
+.unitsDropdown {
   position: absolute;
   margin-top: 90px;
   /* top: 100%; */
