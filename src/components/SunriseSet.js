@@ -1,37 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import keys from '../keys'
+import React from 'react'
 
-const DEBUG = true;
-
-function SunriseSet({ data, tzFecthCb }) {
-  // okay so turns out timezone data is actually returned from owm, but i want
-  // to use another api for practice :)
-  const [timezone, setTimezone] = useState(null);
-
-  // whenever data changes, get timezone data from timezonedb api
-  useEffect(() => {
-    console.log(`use effect fired`);
-    setTimezone(null);
-    async function getTZ() {
-      try {
-        const response = await axios.get(`http://api.timezonedb.com/v2.1/get-time-zone?key=${keys.TIMEZONE_DB_API_KEY}&format=json&by=position&lat=${data.coord.lat}&lng=${data.coord.lon}`);
-
-        if (DEBUG) {
-          console.log(`DATA: ${JSON.stringify(response, null, 2)}`);
-        }
-
-        setTimezone(Number(response.data.gmtOffset));
-
-      } catch (e) {
-        console.dir(`${e}`);
-      }
-    }
-
-    getTZ();
-    // tzFecthCb(true);
-  }, [data]);
-
+function SunriseSet({ data, timezone }) {
 
   function formatUnixTime(unix) {
     // js uses ms epoch time?
@@ -44,18 +13,14 @@ function SunriseSet({ data, tzFecthCb }) {
   }
 
   return (
-    <>
-      {timezone &&
-        <div className="weatherContainer" style={{ "justifyContent": "space-evenly" }}>
-          <span className="weatherItem">
-            <img src="icons/sunrise.png" alt="Sunrise" /> {formatUnixTime(data.sys.sunrise)}
-          </span>
-          <span className="weatherItem" style={{ "justifyContent": "space-evenly" }}>
-            <img src="icons/sunset.png" alt="Sunset" /> {formatUnixTime(data.sys.sunset)}
-          </span>
-        </div>
-      }
-    </>
+    <div className="weatherContainer" style={{ "justifyContent": "space-evenly" }}>
+      <span className="weatherItem">
+        <img src="icons/sunrise.png" alt="Sunrise" /> {formatUnixTime(data.sys.sunrise)}
+      </span>
+      <span className="weatherItem" style={{ "justifyContent": "space-evenly" }}>
+        <img src="icons/sunset.png" alt="Sunset" /> {formatUnixTime(data.sys.sunset)}
+      </span>
+    </div>
   )
 }
 
