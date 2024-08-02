@@ -22,21 +22,26 @@ function MiscWeather({ data }) {
   }
 
   function formatWindSpeed(speedMs) {
-    // let convertedSpeed;
+    let convertedSpeed = speedMs;
     switch (windUnits) {
-      case WINDUNITS.MS:
-        return speedMs + 'm/s';
       case WINDUNITS.FTS:
-        return (speedMs * 3.28084) + WINDUNITS.FTS;
+        convertedSpeed = speedMs * 3.28084;
+        break;
       case WINDUNITS.MPH:
-        return (speedMs * 2.23694) + WINDUNITS.MPH;
+        convertedSpeed = speedMs * 2.23694;
+        break;
       case WINDUNITS.KNOTS:
-        return (speedMs * 1.94384) + WINDUNITS.KNOTS;
+        convertedSpeed = speedMs * 1.94384;
+        break;
       case WINDUNITS.KMPH:
-        return (speedMs * 3.6) + WINDUNITS.KMPH;
+        convertedSpeed = speedMs * 3.6;
+        break;
       default:
-        return speedMs + 'm/s';
+        console.log(`Unknown units: ${windUnits}`);
+        break;
     }
+
+    return convertedSpeed.toFixed(2) + windUnits;
   }
 
   const windOptionDropdown = (
