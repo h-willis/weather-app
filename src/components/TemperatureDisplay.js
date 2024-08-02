@@ -61,7 +61,7 @@ const TemperatureDisplay = ({ temperatureData }) => {
   }
 
   const optionDropdown = (
-    <div className={`tempUnitDropdown`}>
+    <div className={`unitsDropdown`}>
       <select value={units} onClick={(e) => { e.stopPropagation(); }} onChange={handleOptionChange} >
         <option value={TEMPERATUREUNITS.C}>{TEMPERATUREUNITS.C}</option>
         <option value={TEMPERATUREUNITS.F}>{TEMPERATUREUNITS.F}</option>
